@@ -9,6 +9,7 @@
 class PhoneBook
 {
 	public:
+	PhoneBook();
 	void add();
 	void search() const;
 
