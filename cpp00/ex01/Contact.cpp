@@ -1,9 +1,10 @@
+#include "Contact.hpp"
 #include <string>
 #include <iostream>
 #include <sstream>
 // #include <iomanip> // needed?
 
-#include "Contact.hpp"
+
 
 // no con-or-destructors needed????
 
@@ -42,7 +43,7 @@ std::string Contact::formatInput(const std::string& input)
 	else if (input.length() < 10)
 		return std::string(10 - input.length(), ' ') + input; // remove this and use setw in the stream
 	else
-		return input; // could probably shorten this function to the first if then the second could run as a catch-all
+		return input; // could probably shorten this function to the first if, then the second could run as a catch-all
 }
 
 // can i use std::setw to avoid the maths above there???????????????

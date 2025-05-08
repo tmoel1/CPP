@@ -2,6 +2,8 @@
 #define PHONEBOOK_HPP
 
 //#include <string>  // not necessari in fact??
+//#include <iostream>
+//#include <iomanip>
 #include "Contact.hpp"
 
 // needs contact hpp?? yes because we declare an array of contacts??

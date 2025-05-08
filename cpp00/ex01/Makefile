@@ -1,5 +1,5 @@
 NAME	= phonebook
-SRCS	= $(wildcard *.cpp)
+SRCS	= $(wildcard *.cpp) # IS THIS ALLOWED???
 OBJS	= $(SRCS:.cpp=.o)
 CXX		= c++
 CXXFLAGS= -Wall -Wextra -Werror -std=c++98
