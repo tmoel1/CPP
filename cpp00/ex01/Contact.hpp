@@ -10,7 +10,7 @@ class Contact
 		void fillFromInput(); // uses askValidInput to linearly fill out contacts
 		void printRow(int index) const; // print 4-column view
 		void printCard() const; // print full contact card
-		static std::string formatInput(const std::string& input); // truncate OR pad to fit in 10 char column, right align necessary or by default??
+		static std::string formatInput(const std::string& input); // truncate to fit in 10 char column
 		// does the above need to be static in fact????
 
 		// !! double check what needs to be public and private, and static or const or not and exactly why

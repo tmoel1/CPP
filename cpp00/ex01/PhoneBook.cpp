@@ -1,7 +1,3 @@
-//phonebook cpp code
-
-//can probably do without a isValidIndex function, also in the .hpp header
-
 #include "PhoneBook.hpp"
 #include <iostream>
 #include <iomanip>
@@ -42,7 +38,7 @@ void PhoneBook::search() const
 		return;
 	int index;
 	std::istringstream indexStream(prompt);
-	if (!(indexStream >> index) || index < 0 || index > _count)
+	if (!(indexStream >> index) || index < 0 || index >= _count) // should this loop around again if it's an invalid index instead of returning??? or maybe not so it doesnt get stuck in a loop you can't exit from without ctrl-d.
 		std::cout << "Invalid Index" << std::endl;
 	// int index = std:;atoi(line.c_str());
 	// if (index < 0 || index > _count)
