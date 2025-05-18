@@ -8,6 +8,7 @@
 // so i guess we need to make sure there are alpha chars in the inputted strings (not just spaces etc)
 // subject also specifies that any other input is ignored so i guess i have to delete the invalid command prompt??
 // should the list be indexed from 0 or 1?? specified in the subject??
+// i think 0 -7 indexing is fine, it's a phonebook for programmers.
 
 int main()
 {
@@ -18,7 +19,7 @@ int main()
 				<< std::endl;
 	while (true)
 	{
-		std::cout << "> " << std::flush; // maybe add some text explaining he usage keywords
+		std::cout << "> " << std::flush;
 		if (!std::getline(std::cin, cmd))
 			break; // handle ctrl+d while in menu
 		if (cmd == "ADD")
@@ -27,8 +28,6 @@ int main()
 			app.search();
 		else if (cmd == "EXIT")
 			break; // this loops around to the first if() or a return is better here???
-		//else
-		//	std::cout << "Invalid command, try \"ADD\", \"SEARCH\" or \"EXIT\"." << std::endl;
-	} // should  add a catch-all here that reminds the user of the commands if they enter wrongly???
+	}
 	return 0;
 }

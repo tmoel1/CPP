@@ -3,6 +3,9 @@
 
 #include <string>
 
+// should probably add those two constant here, plus tripple check the private/public is logical.
+// but here or the phonebook hpp?? can one use the other??
+
 class Contact
 {
 	public:

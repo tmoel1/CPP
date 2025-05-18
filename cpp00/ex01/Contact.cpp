@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <sstream>
 
+//#include <cstring> /// maybe remove, for strspn
+
 // no con-or-destructors needed????
 
 void Contact::fillFromInput()
@@ -51,8 +53,10 @@ std::string Contact::_askValidInput(const std::string& prompt)
 	while (true)
 	{
 		std::cout << prompt << std::flush; // flush to ensure direct display of prompt
-		if (!std::getline(std::cin, input) || !input.empty())
+		if (!std::getline(std::cin, input))
 			return input;
-		std::cout << "Field cannot be empty" << std::endl; // is flushing here a risk??
-	} // a problem maybe here is that a string can be full of spaces and still count, is it ok?
+		if (input.find_first_not_of(" \t\n\r\f\v") != std::string::npos) // this for both empty and whitespace only strings
+			return input;
+		std::cout << "Field cannot be empty" << std::endl;
+	}
 }

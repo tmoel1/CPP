@@ -17,7 +17,6 @@ class PhoneBook
 		void search() const;
 
 	private: // should private functions start with '_' ??
-		bool _isValidIndex(int index) const;
 		void _printHeader() const;
 		
 		Contact _contacts[8];
