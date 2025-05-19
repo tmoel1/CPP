@@ -1,8 +1,14 @@
-NAME	= phonebook
-SRCS	= $(wildcard *.cpp) # IS THIS ALLOWED???
-OBJS	= $(SRCS:.cpp=.o)
-CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98
+NAME	= 	phonebook
+
+SRCS	= 	main.cpp \
+			Contact.cpp \
+			PhoneBook.cpp
+
+OBJS	= 	$(SRCS:.cpp=.o)
+
+CXX		= 	c++
+
+CXXFLAGS= 	-Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

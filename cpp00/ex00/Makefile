@@ -1,8 +1,12 @@
-NAME	= megaphone #change here
-SRCS	= $(wildcard *.cpp)
-OBJS	= $(SRCS:.cpp=.o)
-CXX		= c++
-CXXFLAGS= -Wall -Wextra -Werror -std=c++98
+NAME	= 	megaphone
+
+SRCS	= 	megaphone.cpp
+
+OBJS	= 	$(SRCS:.cpp=.o)
+
+CXX		= 	c++
+
+CXXFLAGS= 	-Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

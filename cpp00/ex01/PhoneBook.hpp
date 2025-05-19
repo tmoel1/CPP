@@ -1,28 +1,24 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-//#include <string>  // not necessari in fact??
-//#include <iostream>
-//#include <iomanip>
 #include "Contact.hpp"
-
-// needs contact hpp?? yes because we declare an array of contacts??
 
 class PhoneBook
 {
 	public:
 		PhoneBook();
+		~PhoneBook();
 		
 		void add();
 		void search() const;
 
-	private: // should private functions start with '_' ??
+	private:
 		void _printHeader() const;
 		
 		Contact _contacts[8];
-		// should we define as const/static the max # and column width?
 		int _count;
 		int _next;
+		static const int kMaxContacts = 8;
 };
 
 #endif

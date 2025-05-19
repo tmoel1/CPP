@@ -4,9 +4,8 @@
 #include <iomanip>
 #include <sstream>
 
-//#include <cstring> /// maybe remove, for strspn
-
-// no con-or-destructors needed????
+Contact::Contact() {}
+Contact::~Contact() {}
 
 void Contact::fillFromInput()
 {
@@ -19,32 +18,30 @@ void Contact::fillFromInput()
 
 void Contact::printRow(int index) const
 {
-	std::ostringstream convertedIndex; // should i use just stringstream for both in and out operations?
+	std::ostringstream convertedIndex;
 	convertedIndex << index;
 	
-	std::cout	<< std::setw(10) << formatInput(convertedIndex.str()) << '|'
-				<< std::setw(10) << formatInput(_firstName) << '|'
-				<< std::setw(10) << formatInput(_lastName) << '|'
-				<< std::setw(10) << formatInput(_nickName) << std::endl; // probably should endl here
-} // is this formatting good or not? and newlines are necessary here instead of endl or not?????
+	std::cout	<< std::setw(10) << truncateInput(convertedIndex.str()) << '|'
+				<< std::setw(10) << truncateInput(_firstName) << '|'
+				<< std::setw(10) << truncateInput(_lastName) << '|'
+				<< std::setw(10) << truncateInput(_nickName) << std::endl;
+}
 
 void Contact::printCard() const
 {
 	std::cout	<< "First Name: " << _firstName << std::endl
 				<< "Last Name: " << _lastName << std::endl
 				<< "Nickname: " << _nickName << std::endl
-				<< "Phone Number: " << _phoneNumber << std::endl // this is stringified right??
+				<< "Phone Number: " << _phoneNumber << std::endl
 				<< "Darkest Secret: " << _darkestSecret << std::endl;
 }
 
-std::string Contact::formatInput(const std::string& input)
+std::string Contact::truncateInput(const std::string& input)
 {
-	if (input.length() > 10) // maybe should define a maxwidth var in the .hpp??? we can without a constructor if it's a static const
+	if (input.length() > 10)
 		return input.substr(0, 9) + '.';
-	//else if (input.length() < 10)
-	//	return std::string(10 - input.length(), ' ') + input; // remove this and use setw in the stream
 	else
-		return input; // could probably shorten this function to the first if, then the second could run as a catch-all
+		return input;
 }
 
 std::string Contact::_askValidInput(const std::string& prompt) 
@@ -52,10 +49,10 @@ std::string Contact::_askValidInput(const std::string& prompt)
 	std::string input;
 	while (true)
 	{
-		std::cout << prompt << std::flush; // flush to ensure direct display of prompt
+		std::cout << prompt << std::flush;
 		if (!std::getline(std::cin, input))
 			return input;
-		if (input.find_first_not_of(" \t\n\r\f\v") != std::string::npos) // this for both empty and whitespace only strings
+		if (input.find_first_not_of(" \t\n\r\f\v") != std::string::npos)
 			return input;
 		std::cout << "Field cannot be empty" << std::endl;
 	}

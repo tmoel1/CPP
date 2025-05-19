@@ -5,45 +5,42 @@
 
 
 PhoneBook::PhoneBook() : _count(0), _next(0) {}
+PhoneBook::~PhoneBook() {}
 
 void PhoneBook::_printHeader() const
 {
 	std::cout	<< std::setw(10) << "Index" << '|'
 				<< std::setw(10) << "First Name" << '|'
 				<< std::setw(10) << "Last Name" << '|'
-				<< std::setw(10) << "Nickname" << std::endl; //definitely no need to truncate here right??
+				<< std::setw(10) << "Nickname" << std::endl;
 }
 
 void PhoneBook::add()
 {
 	_contacts[_next].fillFromInput();
-	if (_count < 8)
+	if (_count < kMaxContacts)
 		_count++;
-	_next = (_next + 1) % 8; // in this function the two '8's should probably be replaced with a const in the hpp??
+	_next = (_next + 1) % kMaxContacts;
 }
 
 void PhoneBook::search() const
 {
-	if (_count == 0) // can we write it like if (!_count) ???
+	if (_count == 0)
 	{
 		std::cout << "Phonebook is empty" << std::endl;
 		return;
 	}
 	_printHeader();
-		for (int i = 0; i < _count; i++) // should we pre-increment with ++i instead?
+		for (int i = 0; i < _count; i++)
 		_contacts[i].printRow(i);
-	std::cout << "Select Index to display: " << std::flush; // no need for newline??
+	std::cout << "Select Index to display: " << std::flush;
 	std::string prompt;
 	if (!std::getline(std::cin, prompt))
 		return;
 	int index;
 	std::istringstream indexStream(prompt);
-	if (!(indexStream >> index) || index < 0 || index >= _count) // should this loop around again if it's an invalid index instead of returning??? or maybe not so it doesnt get stuck in a loop you can't exit from without ctrl-d.
-		std::cout << "Invalid Index" << std::endl;
-	// int index = std:;atoi(line.c_str());
-	// if (index < 0 || index > _count)
-		// invalid
-	// this commented version is more c-style but maybe more simple?
+	if (!(indexStream >> index) || index < 0 || index >= _count)
+		std::cout << "Invalid Index, returning you to main menu" << std::endl;
 	else
 		_contacts[index].printCard();
 }
