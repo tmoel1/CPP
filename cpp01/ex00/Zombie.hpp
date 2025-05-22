@@ -6,18 +6,13 @@
 class Zombie
 {
 	public:
-		Zombie(); //need to add a string as param?? does it need to be explicit??
+		Zombie(const std::string& n);// should this func be explicit??
 		~Zombie();
 
-		void	announce() const; //const as this will simply print a msg - public or private??
+		void announce() const; //const as this will simply print a msg - public or private??
 
 	private:
 		std::string _name; //better private?? 
 };
-
-
-
-
-
 
 #endif
