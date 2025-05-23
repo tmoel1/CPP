@@ -11,7 +11,6 @@ class Zombie
 
 		void announce() const; //const as this will simply print a msg - public or private??
 		// should newzombie and randum chump be prototyped here??
-		// or maybe it should be outside of the class? this needs looking into
 
 	private:
 		std::string _name; //better private?? 
