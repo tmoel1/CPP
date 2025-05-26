@@ -1,7 +1,8 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-Zombie::Zombie(std::string name) : _name(name) {}
+Zombie::Zombie() {}
+//Zombie::Zombie(std::string name) : _name(name) {} no need now?
 
 Zombie::~Zombie()
 {
@@ -12,3 +13,5 @@ void Zombie::announce() const
 {
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
+// definition here for setName?

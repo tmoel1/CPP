@@ -6,14 +6,17 @@
 class Zombie
 {
 	public:
-		Zombie(std::string name);// should this func be explicit??
+		//Zombie(std::string name);// this can be removed right?
+		Zombie();
 		~Zombie();
 
 		void announce() const; //const as this will simply print a msg - public or private??
-		// should newzombie and randum chump be prototyped here??
+		void setName(std::string name); // new for hoard, in zombie .cpp
 
 	private:
 		std::string _name; //better private?? 
 };
+
+// declaration here for zombieHoard?
 
 #endif
