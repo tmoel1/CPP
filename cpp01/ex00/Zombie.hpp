@@ -17,4 +17,7 @@ class Zombie
 		std::string _name; //better private?? 
 };
 
+Zombie *newZombie(std::string); // these 2 are declared here but should they be in the .hpp? as static??
+void randomChump(std::string);
+
 #endif

@@ -1,6 +1,16 @@
-// for tests
-
 #include "Zombie.hpp"
+#include <iostream>
 
-// how comprehensive do the test here need to be in fact?
-// also need to look into method call through a pointer...
+int main()
+{
+	int N = 3;
+	Zombie* horde = zombieHorde(N, "Horde Zombie");
+	if (!horde)
+		return 1;
+
+	for (int i = 0; i < N; i++)
+		horde[i].announce();
+
+	delete [] horde;
+	return 0;
+}

@@ -5,8 +5,7 @@
 // how comprehensive do the test here need to be in fact?
 // also need to look into method call through a pointer...
 
-Zombie *newZombie(std::string); // these 2 are declared here but should they be in the .hpp? as static??
-void randomChump(std::string);
+// movbed the declarations to the .hpp
 
 int main()
 {

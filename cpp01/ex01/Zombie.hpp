@@ -17,6 +17,6 @@ class Zombie
 		std::string _name; //better private?? 
 };
 
-// declaration here for zombieHoard?
+Zombie* zombieHorde(int N, std::string name);
 
 #endif

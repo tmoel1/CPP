@@ -1,8 +1,8 @@
-NAME	= 	phonebook
+NAME	= 	moar_brainz
 
 SRCS	= 	main.cpp \
-			#Contact.cpp \
-			#PhoneBook.cpp
+			Zombie.cpp \
+			zombieHorde.cpp
 
 OBJS	= 	$(SRCS:.cpp=.o)
 
