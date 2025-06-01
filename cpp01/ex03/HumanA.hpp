@@ -1,19 +1,20 @@
-#infdef HUMANA_HPP
+#ifndef HUMANA_HPP
 #define HUMANA_HPP
 
-#include <string>
 #include "Weapon.hpp"
+#include <string>
 
 class HumanA
 {
 	public:
-		HumanA();
+		HumanA(const std::string& name, Weapon& weapon); //again, const and ref necessary??
 		~HumanA();
+
+		void	attack() const; //const as it modifies nothing, only prints
 	
 	private:
-		Weapon Weapon;
 		std::string _name;
+		Weapon& _weapon; //possible due to construction assignment right? can't be another instance otherwise we can't modify it elsewhere
 };
-
 
 #endif
