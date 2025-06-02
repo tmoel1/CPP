@@ -7,14 +7,14 @@
 class HumanA
 {
 	public:
-		HumanA(const std::string& name, Weapon& weapon); //again, const and ref necessary??
+		HumanA(const std::string& name, Weapon& weapon);
 		~HumanA();
 
-		void	attack() const; //const as it modifies nothing, only prints
+		void	attack() const;
 	
 	private:
 		std::string _name;
-		Weapon& _weapon; //possible due to construction assignment right? can't be another instance otherwise we can't modify it elsewhere
+		Weapon& _weapon;
 };
 
 #endif

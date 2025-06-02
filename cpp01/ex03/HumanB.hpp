@@ -7,7 +7,7 @@
 class HumanB
 {
 	public:
-		HumanB(const std::string& name); // const and ref necessary?
+		HumanB(const std::string& name);
 		~HumanB();
 
 		void	setWeapon(Weapon& weapon);
