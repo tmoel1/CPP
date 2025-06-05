@@ -2,7 +2,6 @@
 #include <iostream>
 
 Zombie::Zombie() {}
-//Zombie::Zombie(std::string name) : _name(name) {} no need now?
 
 Zombie::~Zombie()
 {
@@ -18,6 +17,3 @@ void Zombie::setName(std::string name)
 {
 	_name = name;
 }
-
-// definition here for setName? No i think in the zombieHoard makes more sense
-// except if it *needs* to be in the class to have access to _name?

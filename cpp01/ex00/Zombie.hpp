@@ -6,18 +6,16 @@
 class Zombie
 {
 	public:
-		Zombie(std::string name);// should this func be explicit??
+		Zombie(std::string name);
 		~Zombie();
 
-		void announce() const; //const as this will simply print a msg - public or private??
-		// should newzombie and randum chump be prototyped here??
-		// or maybe it should be outside of the class? this needs looking into
+		void announce() const;
 
 	private:
-		std::string _name; //better private?? 
+		std::string _name; 
 };
 
-Zombie *newZombie(std::string); // these 2 are declared here but should they be in the .hpp? as static??
+Zombie *newZombie(std::string);
 void randomChump(std::string);
 
 #endif
