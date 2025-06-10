@@ -1,7 +1,8 @@
-NAME	= 	 aaaaand...open
+NAME	= 	serena_my_love
 
 SRCS	= 	main.cpp \
-			ClapTrap.cpp
+			ClapTrap.cpp \
+			ScavTrap.cpp
 
 OBJS	= 	$(SRCS:.cpp=.o)
 
