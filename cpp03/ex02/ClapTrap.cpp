@@ -40,7 +40,6 @@ ClapTrap::~ClapTrap()
 	std::cout << "ClapTrap class " << _name << " destructor called" << std::endl;
 }
 
-// action go here:
 
 void	ClapTrap::attack(const std::string& target)
 {

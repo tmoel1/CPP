@@ -25,8 +25,6 @@ class ClapTrap
 		static const int	_kDefaultHealth	= 10;
 		static const int	_kDefaultEnergy	= 10;
 		static const int	_kDefaultAttack	= 0;
-
-	private:
 };
 
 #endif
