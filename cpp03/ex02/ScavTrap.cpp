@@ -1,5 +1,7 @@
 #include "ScavTrap.hpp"
+#include "ScavTrap.hpp"
 #include <iostream>
+//#include <string>
 
 ScavTrap::ScavTrap() : ClapTrap("Unnamed Default ScavTrap")
 {
@@ -38,6 +40,8 @@ ScavTrap::~ScavTrap()
 	std::cout << "ScavTrap class " << _name << " destructor called" << std::endl;
 }
 
+// action go here:
+
 void	ScavTrap::attack(const std::string& target)
 {
 	if (_hitPoints <= 0)
@@ -57,6 +61,9 @@ void	ScavTrap::attack(const std::string& target)
 	std::cout << "ScavTrap " << _name << " attacks " << target << " in a scavvy way, causing "
 				<< _attackDamage << " points of damage!" << std::endl;
 }
+
+// needs it;s own attack function, plus the new gatekeeping on, but how will it work for prints
+// regarding healthpoints etc?
 
 void	ScavTrap::guardGate()
 {

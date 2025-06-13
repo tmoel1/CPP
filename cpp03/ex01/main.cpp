@@ -1,21 +1,23 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
-	ClapTrap alice("Alice");
 	ClapTrap bob("Bob");
+	ScavTrap alice("Alice");
 
-	alice.attack("Bob");
-	bob.takeDamage(4);
-	bob.beRepaired(2);
+	alice.attack("an enemy");
+	alice.takeDamage(40);
+	alice.beRepaired(30);
 
-	// energy test
-	for (int i = 0; i < 12; ++i)
-		alice.attack("nothing");
+	alice.guardGate();
 
-	// copy
-	ClapTrap copyTrap = alice;
-	copyTrap.beRepaired(1);
+	// copy tests
+	ScavTrap copy1(alice); // copy ctor
+	ScavTrap copy2; // default
+	copy2 = alice; // assign
+	copy1.guardGate();
+	copy2.guardGate();
 
 	return 0;
 }

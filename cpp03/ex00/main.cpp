@@ -9,13 +9,15 @@ int main()
 	bob.takeDamage(4);
 	bob.beRepaired(2);
 
-	// energy test
+	// energy point test
 	for (int i = 0; i < 12; ++i)
-		alice.attack("nothing");
+		alice.attack("an enemy");
 
-	// copy
-	ClapTrap copyTrap = alice;
-	copyTrap.beRepaired(1);
+	// copy tests
+	ClapTrap cop1(bob); // copy ctor
+	ClapTrap copy2; // default
+	copy2 = alice; // assign
+	copy2.beRepaired(1);
 
 	return 0;
 }
