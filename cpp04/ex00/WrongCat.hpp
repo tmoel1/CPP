@@ -9,9 +9,9 @@ class WrongCat : public WrongAnimal
 		WrongCat();
 		WrongCat(const WrongCat& other);
 		WrongCat& operator=(const WrongCat& rhs);
-		~WrongCat(); //virtual removed
+		~WrongCat();
 	
-		void	makeSound() const; //removed here too
+		void	makeSound() const;
 };
 
 #endif

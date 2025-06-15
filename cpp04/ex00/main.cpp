@@ -5,7 +5,7 @@
 #include "WrongCat.hpp"
 #include <iostream>
 
-int main() ////////////////////////////// delete comments 
+int main() 
 {
 	
 	{
@@ -18,11 +18,11 @@ int main() ////////////////////////////// delete comments
 		std::cout << "ad is a " << ad->getType() << std::endl;
 		std::cout << "ac is a " << ac->getType() << std::endl;
 
-		aa->makeSound(); // Animal sound
-		ad->makeSound();    // Dog sound
-		ac->makeSound();    // Cat sound
+		aa->makeSound();
+		ad->makeSound();
+		ac->makeSound();
 
-		delete aa;       // virtual dtor ensures correct order
+		delete aa;
 		delete ad;
 		delete ac;
 	}
@@ -30,30 +30,31 @@ int main() ////////////////////////////// delete comments
 
 	{
 		std::cout << "\n=== Wrong-polymorphism (on the stack) ===" << std::endl;
-		WrongAnimal waa;          // base object
-		WrongCat    wac;           // derived object
+		WrongAnimal waa;
+		WrongCat    wac;
 
-		WrongAnimal& refwaa = wac;    // bind base-reference to derived
+		WrongAnimal& refwaa = wac;
 
 		std::cout << "refwa is a " << refwaa.getType() << std::endl;
 
-		refwaa.makeSound();   // → WrongAnimal::makeSound()   (static binding)
-		waa.makeSound();  // → WrongAnimal::makeSound()
+		refwaa.makeSound();
+		waa.makeSound();
 		wac.makeSound();
 	}
 
 	/*
 	{
-	/////////// If you uncomment this you'll have leaks
+	// if you uncomment this you'll probably have leaks
 	std::cout << "\n=== Wrong-polymorphism (on the heap) ===" << std::endl; // COMMENT OUT TO AVOID CRASHES?
 	const WrongAnimal* wa = new WrongCat();
 
 	wa->makeSound();    // OOPS: prints WrongAnimal sound!
-	//delete w;   // <-- uncommenting can (potentially) crash execution
+	//delete w;   // <-- uncommenting this here can (potentially) crash execution
 	}
 	*/
 	
 	{
+	// this can also result in leaks or crashes
 	std::cout << std::endl;
 	std::cout << "=== Wrong-polymorphism (on the heap) ===" << std::endl;
 	const WrongAnimal* waa = new WrongAnimal();
@@ -62,13 +63,12 @@ int main() ////////////////////////////// delete comments
 	std::cout << "waa is a " << waa->getType() << std::endl;
 	std::cout << "wac is a " << wac->getType() << std::endl;
 
-	waa->makeSound(); // Animal sound
-	wac->makeSound();    // Cat sound
+	waa->makeSound();
+	wac->makeSound();
 
-	delete waa;       // virtual dtor ensures correct order
+	delete waa;
 	delete wac;
 	}
 	
 	return 0;
-	// RUN IT THROUGH VALGRIND TO BE SURE!!!!!!!!!!!!!!!!!!!!!!!!!!
 }

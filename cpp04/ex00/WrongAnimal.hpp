@@ -9,10 +9,10 @@ class WrongAnimal
 		WrongAnimal();
 		WrongAnimal(const WrongAnimal& other);
 		WrongAnimal& operator=(const WrongAnimal& rhs);
-		~WrongAnimal(); // without the virtual!!
+		~WrongAnimal();
 	
 		std::string		getType() const;
-		void			makeSound() const; //also without!
+		void			makeSound() const;
 
 	protected:
 		std::string		type;
