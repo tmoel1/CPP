@@ -11,11 +11,13 @@ class Brain
 		Brain& operator=(const Brain& rhs);
 		~Brain();
 
-		void			setIdea(int idx, const std::string& idea);
-		std::string		getIdea(int idx) const;
+		void				setIdea(int idx, const std::string& idea);
+		std::string			getIdea(int idx) const;
+
+		static const int	kNumIdeas = 100;
 
 	private:
-		std::string ideasArray[100];
+		std::string ideasArray[kNumIdeas];
 };
 
 #endif

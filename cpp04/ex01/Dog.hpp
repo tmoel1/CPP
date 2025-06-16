@@ -15,7 +15,7 @@ class Dog : public Animal
 		virtual void	makeSound() const;
 
 		void			setIdea(int idx, const std::string& idea);
-		std::string		getIdea(int idx) const; //why are we redeclaring these in dog/cat?
+		std::string		getIdea(int idx) const;
 	
 	private:
 		Brain*	brain;

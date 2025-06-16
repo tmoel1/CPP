@@ -2,19 +2,16 @@
 #include <iostream>
 #include <string>
 
-Dog::Dog() : Animal(), brain(new Brain()) // new brain allocation here
+Dog::Dog() : Animal(), brain(new Brain())
 {
 	std::cout << "Dog default contructed" << std::endl;
 
 	type = "Dog";
 }
 
-Dog::Dog(const Dog& other) : Animal(other), brain(new Brain(*other.brain)) // added here too
+Dog::Dog(const Dog& other) : Animal(other), brain(new Brain(*other.brain))
 {
 	std::cout << "Dog copy contructed" << std::endl;
-
-	//type = other.type; // this added but why now? well it's sort of redundant unless you later change Dog::type
-
 }
 
 Dog& Dog::operator=(const Dog& rhs)
@@ -24,7 +21,7 @@ Dog& Dog::operator=(const Dog& rhs)
 	if (this != &rhs)
 	{
 		Animal::operator=(rhs);
-		*brain = *rhs.brain; //added this
+		*brain = *rhs.brain;
 	}
 
 	return *this;
@@ -44,7 +41,7 @@ void			Dog::makeSound() const
 	std::cout << "Woof woof!" << std::endl;
 }
 
-void			Dog::setIdea(int idx, const std::string& idea) //added
+void			Dog::setIdea(int idx, const std::string& idea)
 {
 	brain->setIdea(idx, idea);
 }

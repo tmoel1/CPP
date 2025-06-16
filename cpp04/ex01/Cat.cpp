@@ -2,18 +2,16 @@
 #include <iostream>
 #include <string>
 
-Cat::Cat() : Animal(), brain(new Brain()) // new brain allocation here
+Cat::Cat() : Animal(), brain(new Brain())
 {
 	std::cout << "Cat default contructed" << std::endl;
 
 	type = "Cat";
 }
 
-Cat::Cat(const Cat& other) : Animal(other), brain(new Brain(*other.brain)) // added here too
+Cat::Cat(const Cat& other) : Animal(other), brain(new Brain(*other.brain))
 {
 	std::cout << "Cat copy contructed" << std::endl;
-
-	//type = other.type; // this added but why now?
 }
 
 Cat& Cat::operator=(const Cat& rhs)
@@ -23,7 +21,7 @@ Cat& Cat::operator=(const Cat& rhs)
 	if (this != &rhs)
 	{
 		Animal::operator=(rhs);
-		*brain = *rhs.brain; //added this
+		*brain = *rhs.brain;
 	}
 
 	return *this;
@@ -43,7 +41,7 @@ void			Cat::makeSound() const
 	std::cout << "Meow" << std::endl;
 }
 
-void			Cat::setIdea(int idx, const std::string& idea) //added
+void			Cat::setIdea(int idx, const std::string& idea)
 {
 	brain->setIdea(idx, idea);
 }

@@ -5,7 +5,7 @@ Brain::Brain()
 {
 	std::cout << "Brain default constructed" << std::endl;
 
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < kNumIdeas; ++i)
 		ideasArray[i] = "empty";
 }
 
@@ -13,7 +13,7 @@ Brain::Brain(const Brain& other)
 {
 	std::cout << "Brain copy constructed" << std::endl;
 
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < kNumIdeas; ++i)
 		ideasArray[i] = other.ideasArray[i];
 }
 
@@ -23,7 +23,7 @@ Brain& Brain::operator=(const Brain& rhs)
 
 	if (this != &rhs)
 	{
-		for (int i = 0; i < 100; ++i)
+		for (int i = 0; i < kNumIdeas; ++i)
 			ideasArray[i] = rhs.ideasArray[i];
 	}
 
@@ -39,11 +39,14 @@ Brain::~Brain()
 
 void			Brain::setIdea(int idx, const std::string& idea)
 {
-	if (idx >= 0 && idx < 100)
+	if (idx >= 0 && idx < kNumIdeas)
 		ideasArray[idx] = idea;
 }
 
 std::string		Brain::getIdea(int idx) const
 {
-	return (idx >= 0 && idx < 100) ? ideasArray[idx] : "";
+	if (idx >= 0 && idx < kNumIdeas)
+		return ideasArray[idx];
+	else
+		return "";
 }
