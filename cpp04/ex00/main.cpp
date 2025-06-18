@@ -45,10 +45,10 @@ int main()
 	/*
 	{
 	// if you uncomment this you'll probably have leaks
-	std::cout << "\n=== Wrong-polymorphism (on the heap) ===" << std::endl; // COMMENT OUT TO AVOID CRASHES?
+	std::cout << "\n=== Wrong-polymorphism (on the heap) ===" << std::endl;
 	const WrongAnimal* wa = new WrongCat();
 
-	wa->makeSound();    // OOPS: prints WrongAnimal sound!
+	wa->makeSound();
 	//delete w;   // <-- uncommenting this here can (potentially) crash execution
 	}
 	*/
