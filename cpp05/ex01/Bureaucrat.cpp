@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Anonymous Intern"), _grade(150) {}
 
@@ -47,12 +48,12 @@ void				Bureaucrat::decrementGrade()
 
 const char*		Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Bureaucrat: grade too high (must be >= 1)";
+	return "Bureaucrat: grade too high (# must be >= 1)";
 }
 
 const char*		Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Bureaucrat: grade too low (must be <= 150)";
+	return "Bureaucrat: grade too low (# must be <= 150)";
 }
 
 
@@ -63,6 +64,21 @@ void	Bureaucrat::_validateGrade(int grade)
 		throw GradeTooHighException();
 	if (grade > 150)
 		throw GradeTooLowException();
+}
+
+void	Bureaucrat::signForm(Form& f) const //new for ex01
+{
+	try
+	{
+		f.beSigned(*this);
+		std::cout << _name << " signed " << f.getName() << std::endl;
+	}
+
+	catch (const std::exception& e)
+	{
+		std::cout << _name << " couldn't sign " << f.getName() << " because "
+			<< e.what() << std::endl;
+	}
 }
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& b)
