@@ -65,12 +65,12 @@ void	Form::beSigned(const Bureaucrat& b)
 
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return "grade too high (# must be >= 1)";
+	return "Form: grade too high (# must be >= 1)";
 }
 
 const char*	Form::GradeTooLowException::what() const throw()
 {
-	return "grade too low (# must be <= 150)";
+	return "Form: grade too low (# must be <= 150)";
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& f)
