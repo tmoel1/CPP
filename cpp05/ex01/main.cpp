@@ -19,7 +19,7 @@ int main()
 
 	try
 	{
-		Form badHigh("Bad High", 0, 10);   // sign-grade too high
+		Form badHigh("Bad High", 0, 10); // sign-grade too high
 	}
 	catch (const std::exception& e)
 	{
@@ -28,7 +28,7 @@ int main()
 
 	try
 	{
-		Form badLow("Bad Low", 151, 10);   // sign-grade too low
+		Form badLow("Bad Low", 151, 10); // sign-grade too low
 	}
 	catch (const std::exception& e)
 	{

@@ -22,14 +22,6 @@ Form& Form::operator=(const Form& rhs)
 	return *this;
 }
 
-void	Form::_validateGrade(int grade)
-{
-	if (grade < 1)
-		throw GradeTooHighException();
-	if (grade > 150)
-		throw GradeTooLowException();
-}
-
 Form::~Form() {}
 
 
@@ -71,6 +63,14 @@ const char*	Form::GradeTooHighException::what() const throw()
 const char*	Form::GradeTooLowException::what() const throw()
 {
 	return "Form: grade too low (# must be <= 150)";
+}
+
+void	Form::_validateGrade(int grade)
+{
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& f)

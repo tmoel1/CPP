@@ -66,12 +66,12 @@ void AForm::execute(Bureaucrat const& executor) const
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return "AForm: grade too high (# must be ≥ 1)";
+	return "AForm: grade too high";
 }
 
 const char* AForm::GradeTooLowException::what()  const throw()
 {
-	return "AForm: grade too low (# must be ≤ 150)";
+	return "AForm: grade too low";
 }
 
 const char* AForm::FormNotSignedException::what() const throw()
@@ -94,10 +94,8 @@ void AForm::_validateGrade(int g)
 
 std::ostream&	operator<<(std::ostream& os, const AForm& f)
 {
-	os << "Form "  << f.getName() << " [sign:" << f.getSignGrade() << ", exec:"
-		<< f.getExecGrade() << "] – signed:" << (f.isSigned() ? "yes" : "no");
+	os << "Form "  << f.getName() << " sign:" << f.getSignGrade() << ", exec:"
+		<< f.getExecGrade() << " signed:" << (f.isSigned() ? "yes" : "no");
 	
 	return os;
 }
-
-/////// maybe modify the above prints to clean up the square brackets etc?
