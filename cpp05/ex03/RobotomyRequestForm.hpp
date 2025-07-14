@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 
+
 class RobotomyRequestForm : public AForm
 {
 	public:
