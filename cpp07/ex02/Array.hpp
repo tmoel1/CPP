@@ -1,8 +1,7 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <stdexcept> // for out of range
-// not necessary -> #include <cstddef> // for size_t
+#include <stdexcept>
 #include <string>
 #include <iostream>
 
@@ -13,13 +12,13 @@ class Array
 
 		Array() : _data(NULL), _size(0) {}
 
-		explicit Array(unsigned int n) : _data(NULL), _size(n) // need to be explicit?
+		explicit Array(unsigned int n) : _data(NULL), _size(n)
 		{
 			if (n)
-				_data = new T[n]();  // can this part be in the topline instead?
+				_data = new T[n]();
 		}
 
-		Array(Array const& other) : _data(NULL), _size(0) //initialising at zero as copy assignment does the rest
+		Array(Array const& other) : _data(NULL), _size(0)
 		{
 			*this = other;
 		}
@@ -39,7 +38,7 @@ class Array
 					_data = new T[_size];
 				else
 					_data = NULL;
-				for (unsigned int i = 0; i < _size; ++i) //check to be sure it's correct to have the loop also for it size is 0 and therefore data is null
+				for (unsigned int i = 0; i < _size; ++i)
 					_data[i] = rhs._data[i];
 			}
 			return *this;
@@ -67,7 +66,7 @@ class Array
 	private:
 
 		T*				_data;
-		unsigned int	_size; // better size_t?
+		unsigned int	_size;
 };
 
 
