@@ -1,14 +1,5 @@
 #include "Span.hpp"
 
-
-// maybe check in cpp07 if orthodox was followed with the operate= being moved?
-
-
-
-
-
-
-
 Span::Span() : _max(0) {}
 
 Span::Span(unsigned int n) : _max(n) {}
@@ -32,45 +23,41 @@ Span::~Span() {}
 int		Span::shortestSpan() const
 {
 	if (_data.size() < 2)
-		throw std::logic_error("Exception: not enough numbers");
+		throw std::logic_error("Exception: not enough elements");
 
 	std::vector<int> tmp(_data);
 	std::sort(tmp.begin(), tmp.end());
 
-	int best = tmp[1] - tmp[0];
+	int shortest = tmp[1] - tmp[0];
 
 	for (unsigned int i = 2; i < tmp.size(); ++i)
 	{
 		int diff = tmp[i] - tmp[i - 1];
 		
-		if (diff < best)
-			best = diff;
+		if (diff < shortest)
+			shortest = diff;
 	}
 
-	return best;
+	return shortest;
 }
 
 int		Span::longestSpan() const
 {
 	if (_data.size() < 2)
-		throw std::logic_error("Exception: not enough numbers");
+		throw std::logic_error("Exception: not enough elements");
 
-	// Find an iterator to the smallest element.
 	std::vector<int>::const_iterator min_it = std::min_element(_data.begin(), _data.end());
-
-	// Find an iterator to the largest element.
 	std::vector<int>::const_iterator max_it = std::max_element(_data.begin(), _data.end());
 
-	// The longest span is the difference between the values they point to.
 	return *max_it - *min_it;
 }
 
-unsigned int	Span::size() const
+unsigned int	Span::getSize() const
 {
 	return _data.size();
 }
 
-unsigned int	Span::capacity() const
+unsigned int	Span::getCapacity() const
 {
 	return _max;
 }
