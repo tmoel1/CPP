@@ -21,10 +21,10 @@ class BitcoinExchange
 		void	processInputFile(const std::string& inputPath);
 
 	private:
-		void	processLine(const std::string& line);
-		bool	isValidDate(const std::string& date);
-		bool	isValidValue(const std::string& valueStr, float& value);
-		void	trimString(std::string& s);
+		void	_processLine(const std::string& line);
+		bool	_isValidDate(const std::string& date);
+		bool	_isValidValue(const std::string& valueStr, float& value);
+		void	_trimString(std::string& s);
 
 		std::map<std::string, float> _db;
 };
