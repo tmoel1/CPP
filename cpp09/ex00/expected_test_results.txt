@@ -1,0 +1,20 @@
+for test_1:
+
+date | value
+2011-01-03 | 3           # exact date, normal
+2011-01-03 | 2.5         # float
+2011-01-02 | 1           # if 2011-01-02 missing, should fallback to closest earlier date
+2010-12-31 | 0.1         # far earlier—if no earlier date in DB, this should be an error or handled per spec
+2012-01-11 | 1000        # max allowed, exact
+2012-01-11 | 1000.0001   # too large
+2012-01-11 | -5          # not positive
+2012-01-11 | 0           # not positive (zero)
+2012-01-12 | 1e2         # scientific notation, fallback if 2012-01-12 missing
+2013-05-20 | 500         # valid
+2013-05-20|500           # malformed spacing around separator (should still parse or error depending on robustness)
+2013-13-01 | 10          # bad date (month 13)
+2013-05-32 | 10          # bad date (day 32)
+abcd-ef-gh | 1           # completely invalid date
+2014-07-01 | notanumber  # invalid value
+2014-07-01              # missing pipe/value
+2014-07-01 | 5 | extra   # too many fields

@@ -58,60 +58,77 @@ void BitcoinExchange::processInputFile(const std::string& inputPath)
 
 void BitcoinExchange::processLine(const std::string& line)
 {
-	size_t separatorPos = line.find(" | ");
+    size_t separatorPos = line.find('|');
 
-	if (separatorPos == std::string::npos)
-	{
-		std::cout << "Error: bad input => " << line << std::endl;
-		return;
-	}
+    if (separatorPos == std::string::npos)
+    {
+        std::cout << "Error: bad input => " << line << std::endl;
+        return;
+    }
 
-	std::string date = line.substr(0, separatorPos);
-	std::string valueStr = line.substr(separatorPos + 3);
-	float value;
+    std::string date = line.substr(0, separatorPos);
+    std::string valueStr = line.substr(separatorPos + 1);
+    
+    trimString(date);
+    trimString(valueStr);
 
-	if (!isValidDate(date))
-	{
-		std::cout << "Error: bad input => " << date << std::endl; // move error msg to helper function
-		return;
-	}
-	if (!isValidValue(valueStr, value))
-		return;
+    float value;
 
-	std::map<std::string, float>::iterator it = _db.lower_bound(date);
+    if (!isValidDate(date))
+        return;
 
-	if (it == _db.end() || (it->first != date && it != _db.begin())) // ->first?
-		--it;
-	else if (it->first != date && it == _db.begin())
-	{
-		std::cout << "Error: no data available for or before date " << date << std::endl;
-		return;
-	}
+    if (!isValidValue(valueStr, value))
+        return;
 
-	std::cout << date << " => " << value << " = " << (value * it->second) << std::endl;
-} // it->second??
+    std::map<std::string, float>::iterator it = _db.lower_bound(date);
+
+    if (it == _db.end() || (it->first != date && it != _db.begin()))
+        --it;
+    else if (it->first != date && it == _db.begin())
+    {
+        std::cout << "Error: no data available for or before date " << date << std::endl;
+        return;
+    }
+
+    std::cout << date << " => " << value << " = " << (value * it->second) << std::endl;
+}
 
 bool BitcoinExchange::isValidDate(const std::string& date)
 {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
 		return false;
+	}
 
 	int year = std::atoi(date.substr(0, 4).c_str());
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
 	
-	if (year < 2009 || month < 1 || month > 12 || day < 1 || day > 31) 
+	if (year < 2009 || month < 1 || month > 12 || day < 1 || day > 31)
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
 		return false;
+	}
 	else
-		return true; // error msgs should be moved here for consistency?
+		return true;
 }
 
 bool BitcoinExchange::isValidValue(const std::string& valueStr, float& value)
 {
+	if (valueStr.empty())
+	{
+		std::cout << "Error: bad input => " << valueStr << std::endl;
+		return false;
+	}
+	
 	char* end;
-	value = std::strtof(valueStr.c_str(), &end); // how does the &end work? and strtof?
+	value = std::strtof(valueStr.c_str(), &end);
 
-	if (*end != '\0' && !std::isspace(*end)) // !std::isspace(*end) ????
+	while (*end != '\0' && std::isspace(*end))
+		end++;
+
+	if (*end != '\0') //&& !std::isspace(*end))
 	{
 		std::cout << "Error: bad input => " << valueStr << std::endl;
 		return false;
@@ -128,4 +145,10 @@ bool BitcoinExchange::isValidValue(const std::string& valueStr, float& value)
 	}
 	else
 		return true;
+}
+
+void	BitcoinExchange::trimString(std::string& s)
+{
+	s.erase(0, s.find_first_not_of(" \t\n\r"));
+	s.erase(s.find_last_not_of(" \t\n\r") + 1);
 }

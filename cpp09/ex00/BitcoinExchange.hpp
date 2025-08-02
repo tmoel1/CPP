@@ -24,6 +24,7 @@ class BitcoinExchange
 		void	processLine(const std::string& line);
 		bool	isValidDate(const std::string& date);
 		bool	isValidValue(const std::string& valueStr, float& value);
+		void	trimString(std::string& s);
 
 		std::map<std::string, float> _db;
 };
