@@ -1,0 +1,75 @@
+--- VALID EXPRESSIONS (Should Succeed) ---
+
+# Subject example 1
+# Command: ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+# Expected: 42
+
+# Subject example 2
+# Command: ./RPN "7 7 * 7 -"
+# Expected: 42
+
+# Subject example 3
+# Command: ./RPN "1 2 * 2 / 2 * 2 4 - +"
+# Expected: 0
+
+# Standard RPN example
+# Command: ./RPN "5 1 2 + 4 * + 3 -"
+# Expected: 14
+
+# Simple integer division
+# Command: ./RPN "9 2 /"
+# Expected: 4
+
+# Multiple sub-expressions
+# Command: ./RPN "2 3 * 4 5 * +"
+# Expected: 26
+
+# A single number is a valid expression
+# Command: ./RPN "9"
+# Expected: 9
+
+
+--- INVALID EXPRESSIONS (Should print "Error") ---
+
+# Invalid token "("
+# Command: ./RPN "(1 + 1)"
+# Expected: Error
+
+# Too many operands left on stack
+# Command: ./RPN "1 2 3 *"
+# Expected: Error
+
+# Not enough operands for "+"
+# Command: ./RPN "1 +"
+# Expected: Error
+
+# Not enough operands for "*"
+# Command: ./RPN "*"
+# Expected: Error
+
+# Division by zero
+# Command: ./RPN "5 0 /"
+# Expected: Error
+
+# Not enough operands for second "-"
+# Command: ./RPN "1 2 + -"
+# Expected: Error
+
+# Invalid token "."
+# Command: ./RPN "1 . 5 +"
+# Expected: Error
+
+# Invalid token "10" (not a single digit)
+# Command: ./RPN "10 2 +"
+# Expected: Error
+
+# Invalid token "a"
+# Command: ./RPN "1 a +"
+# Expected: Error
+
+# Empty expression
+# Command: ./RPN ""
+# Expected: Error
+
+# Expression with only numbers
+# Command: ./RPN "1 2 3 4"
