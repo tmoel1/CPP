@@ -17,37 +17,37 @@ Base*	generate()
 	}
 }
 
-void	identify(Base* bPtr)
+void	identify(Base* p)
 {
-	if (dynamic_cast<A*>(bPtr))
+	if (dynamic_cast<A*>(p))
 		std::cout << "A";
-	else if (dynamic_cast<B*>(bPtr))
+	else if (dynamic_cast<B*>(p))
 		std::cout << "B";
-	else if (dynamic_cast<C*>(bPtr))
+	else if (dynamic_cast<C*>(p))
 		std::cout << "C";
 	else
 		std::cout << "Unknown" << std::endl;
 }
 
-void	identify(Base& bRef)
+void	identify(Base& p)
 {
 	try
 	{
-		(void)dynamic_cast<A&>(bRef);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
 		return;
 	}
 	catch (std::exception&) {}
 	try
 	{
-		(void)dynamic_cast<B&>(bRef);
+		(void)dynamic_cast<B&>(p);
 		std::cout << "B" << std::endl;
 		return;
 	}
 	catch (std::exception&) {}
 	try
 	{
-		(void)dynamic_cast<C&>(bRef);
+		(void)dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
 		return;
 	}
