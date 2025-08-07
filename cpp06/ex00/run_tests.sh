@@ -6,7 +6,7 @@
 # • Run: ./run_tests.sh
 # ──────────────────────────────────────────────────────────────────────────
 
-BIN=./conversion_of_scalar_types
+BIN=./convert
 
 if [[ ! -x $BIN ]]; then
   echo "❌  Expected binary '$BIN' not found or not executable." >&2
