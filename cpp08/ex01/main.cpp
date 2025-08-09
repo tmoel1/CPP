@@ -87,7 +87,8 @@ int main() {
 		std::cout << "Caught OK - " << e.what() << std::endl;
 	}
 
-	std::cout << "Original size: " << s_orig.getSize() << " | Copy size: " << s_copy.getSize() << " (Copy is independent)" << std::endl;
+	std::cout << "Original size: " << s_orig.getSize() << " | Copy size: "
+				<< s_copy.getSize() << " (Copy is independent)" << std::endl;
 
 	return 0;
 }
