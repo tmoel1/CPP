@@ -1,5 +1,4 @@
 #include "PmergeMe.hpp"
-#include <iostream>
 
 int main(int argc, char **argv)
 {
@@ -12,7 +11,7 @@ int main(int argc, char **argv)
 	try
 	{
 		PmergeMe pmergeme;
-		pmergeme.sortAndMeasure(argc, argv);
+		pmergeme.runSortComparison(argc, argv);
 	}
 	catch (const std::exception& e)
 	{

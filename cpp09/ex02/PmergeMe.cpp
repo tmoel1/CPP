@@ -1,11 +1,12 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe() {}
-PmergeMe::~PmergeMe() {}
+
 PmergeMe::PmergeMe(const PmergeMe& other)
 {
 	*this = other;
 }
+
 PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
 {
 	if (this != &rhs)
@@ -16,11 +17,61 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
 	return *this;
 }
 
+PmergeMe::~PmergeMe() {}
 
+
+
+
+// -Main Public Method
+void PmergeMe::runSortComparison(int argc, char **argv)
+{
+	_parseInput(argc, argv);
+
+	std::cout << "Before:";
+	for (size_t i = 0; i < _vec.size(); ++i)
+		std::cout << " " << _vec[i];
+	std::cout << std::endl;
+
+	// -Vector Sorting and Timing
+	clock_t start_vec = clock();
+	_fordJohnsonSortVector(_vec); // Call main algorithm function directly
+	clock_t end_vec = clock();
+	double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000.0;
+
+	// -Deque Sorting and Timing
+	clock_t start_deq = clock();
+	_fordJohnsonSortDeque(_deq); // Call main algorithm function directly
+	clock_t end_deq = clock();
+	double time_deq = static_cast<double>(end_deq - start_deq) / CLOCKS_PER_SEC * 1000000.0;
+
+	std::cout << "After: ";
+	for (size_t i = 0; i < _vec.size(); ++i)
+		std::cout << " " << _vec[i];
+	std::cout << std::endl;
+
+	std::cout << "Time to process a range of " << _vec.size()
+			<< " elements with std::vector : " << time_vec << " us" << std::endl;
+	std::cout << "Time to process a range of " << _deq.size()
+			<< " elements with std::deque  : " << time_deq << " us" << std::endl;
+}
+
+// -Helper Methods
+void PmergeMe::_parseInput(int argc, char **argv)
+{
+	for (int i = 1; i < argc; ++i)
+	{
+		char* end;
+		long val = std::strtol(argv[i], &end, 10);
+		if (*end != '\0' || val <= 0 || val > INT_MAX)
+			throw std::runtime_error("Error");
+		_vec.push_back(static_cast<int>(val));
+		_deq.push_back(static_cast<int>(val));
+	}
+}
 
 // -Jacobsthal Sequence Generation
 // This helper function creates the special insertion order for the algorithm.
-std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n)
+std::vector<size_t> PmergeMe::_generateJacobsthalIndices(size_t n)
 {
 	std::vector<size_t> jacob;
 	if (n == 0)
@@ -46,52 +97,6 @@ std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t n)
 	return jacob;
 }
 
-// -Main Public Method
-void PmergeMe::sortAndMeasure(int argc, char **argv)
-{
-	_parseInput(argc, argv);
-
-	std::cout << "Before:";
-	for (size_t i = 0; i < _vec.size(); ++i)
-		std::cout << " " << _vec[i];
-	std::cout << std::endl;
-
-	// --- Vector Sorting and Timing ---
-	clock_t start_vec = clock();
-	_fordJohnsonSortVector(_vec); // Call main algorithm function directly
-	clock_t end_vec = clock();
-	double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000.0;
-
-	// --- Deque Sorting and Timing ---
-	clock_t start_deq = clock();
-	_fordJohnsonSortDeque(_deq); // Call main algorithm function directly
-	clock_t end_deq = clock();
-	double time_deq = static_cast<double>(end_deq - start_deq) / CLOCKS_PER_SEC * 1000000.0;
-
-	std::cout << "After: ";
-	for (size_t i = 0; i < _vec.size(); ++i)
-		std::cout << " " << _vec[i];
-	std::cout << std::endl;
-
-	std::cout << "Time to process a range of " << _vec.size()
-			<< " elements with std::vector : " << time_vec << " us" << std::endl;
-	std::cout << "Time to process a range of " << _deq.size()
-			<< " elements with std::deque  : " << time_deq << " us" << std::endl;
-}
-
-// -Helper Methods
-void PmergeMe::_parseInput(int argc, char **argv)
-{
-	for (int i = 1; i < argc; ++i)
-	{
-		char* end;
-		long val = std::strtol(argv[i], &end, 10);
-		if (*end != '\0' || val <= 0)
-			throw std::runtime_error("Error");
-		_vec.push_back(static_cast<int>(val));
-		_deq.push_back(static_cast<int>(val));
-	}
-}
 
 // -Vector Implementation
 
@@ -164,7 +169,7 @@ void PmergeMe::_fordJohnsonSortVector(std::vector<int>& arr)
 	if (!pendChain.empty())
 		mainChain.insert(mainChain.begin(), pendChain[0]);
 
-	std::vector<size_t> jacob_indices = generateJacobsthalIndices(pendChain.size());
+	std::vector<size_t> jacob_indices = _generateJacobsthalIndices(pendChain.size());
 	for (size_t i = 0; i < jacob_indices.size(); ++i)
 	{
 		size_t k = jacob_indices[i];
@@ -254,7 +259,7 @@ void PmergeMe::_fordJohnsonSortDeque(std::deque<int>& arr)
 	if (!pendChain.empty())
 		mainChain.insert(mainChain.begin(), pendChain[0]);
 
-	std::vector<size_t> jacob_indices = generateJacobsthalIndices(pendChain.size());
+	std::vector<size_t> jacob_indices = _generateJacobsthalIndices(pendChain.size());
 	for (size_t i = 0; i < jacob_indices.size(); ++i)
 	{
 		size_t k = jacob_indices[i];
@@ -275,166 +280,3 @@ void PmergeMe::_fordJohnsonSortDeque(std::deque<int>& arr)
 	}
 	arr = mainChain;
 }
-
-
-
-
-
-
-
-/*
-PmergeMe::PmergeMe() {}
-PmergeMe::~PmergeMe() {}
-PmergeMe::PmergeMe(const PmergeMe& other) { *this = other; }
-PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
-{
-	if (this != &rhs)
-	{
-		this->_vec = rhs._vec;
-		this->_deq = rhs._deq;
-	}
-	return *this;
-}
-
-void PmergeMe::sortAndMeasure(int argc, char **argv)
-{
-	_parseInput(argc, argv);
-
-	std::cout << "Before: ";
-	for (size_t i = 0; i < _vec.size(); ++i)
-		std::cout << " " << _vec[i];
-	std::cout << std::endl;
-
-	_sortVector();
-	_sortDeque();
-
-	std::cout << "After:  ";
-	for (size_t i = 0; i < _vec.size(); ++i)
-		std::cout << " " << _vec[i];
-	std::cout << std::endl;
-
-	_printResults("std::vector", 0.0); // Placeholder times, will be filled by actual timing
-	_printResults("std::deque", 0.0);
-}
-
-void PmergeMe::_parseInput(int argc, char **argv)
-{
-	for (int i = 1; i < argc; ++i)
-	{
-		char* end;
-		long val = std::strtol(argv[i], &end, 10);
-		if (*end != '\0' || val <= 0)
-			throw std::runtime_error("Error");
-		_vec.push_back(static_cast<int>(val));
-		_deq.push_back(static_cast<int>(val));
-	}
-}
-
-void PmergeMe::_printResults(const std::string& containerName, double time)
-{
-	// In a real implementation, 'time' would be calculated using clock() or similar
-	// For this example, we'll just show the format
-	static double vecTime = (double)clock();
-	static double deqTime;
-
-	if (containerName == "std::vector")
-	{
-		vecTime = ((double)clock() - vecTime) / CLOCKS_PER_SEC * 1000000.0;
-		std::cout << "Time to process a range of " << _vec.size()
-				<< " elements with " << containerName << " : " << vecTime << " us" << std::endl;
-		deqTime = (double)clock();
-	}
-	else
-	{
-		deqTime = ((double)clock() - deqTime) / CLOCKS_PER_SEC * 1000000.0;
-		std::cout << "Time to process a range of " << _deq.size()
-				<< " elements with " << containerName << " : " << deqTime << " us" << std::endl;
-	}
-}
-
-void PmergeMe::_sortVector()
-{
-	_mergeInsertVector(_vec);
-}
-
-void PmergeMe::_mergeInsertVector(std::vector<int>& arr)
-{
-	if (arr.size() <= 1) return;
-
-	std::vector<std::pair<int, int> > pairs;
-	int straggler = -1;
-
-	for (size_t i = 0; i < arr.size() / 2; ++i)
-	{
-		int a = arr[i * 2];
-		int b = arr[i * 2 + 1];
-		if (a < b) std::swap(a, b);
-		pairs.push_back(std::make_pair(a, b));
-	}
-	if (arr.size() % 2 != 0) straggler = arr.back();
-
-	std::vector<int> mainChain;
-	for (size_t i = 0; i < pairs.size(); ++i)
-		mainChain.push_back(pairs[i].first);
-	
-	_mergeInsertVector(mainChain);
-
-	std::vector<int> result = mainChain;
-	for (size_t i = 0; i < pairs.size(); ++i)
-	{
-		int val = pairs[i].second;
-		std::vector<int>::iterator it = std::lower_bound(result.begin(), result.end(), val);
-		result.insert(it, val);
-	}
-
-	if (straggler != -1)
-	{
-		std::vector<int>::iterator it = std::lower_bound(result.begin(), result.end(), straggler);
-		result.insert(it, straggler);
-	}
-	arr = result;
-}
-
-void PmergeMe::_sortDeque()
-{
-	_mergeInsertDeque(_deq);
-}
-
-void PmergeMe::_mergeInsertDeque(std::deque<int>& arr)
-{
-	if (arr.size() <= 1) return;
-
-	std::deque<std::pair<int, int> > pairs;
-	int straggler = -1;
-
-	for (size_t i = 0; i < arr.size() / 2; ++i)
-	{
-		int a = arr[i * 2];
-		int b = arr[i * 2 + 1];
-		if (a < b) std::swap(a, b);
-		pairs.push_back(std::make_pair(a, b));
-	}
-	if (arr.size() % 2 != 0) straggler = arr.back();
-
-	std::deque<int> mainChain;
-	for (size_t i = 0; i < pairs.size(); ++i)
-		mainChain.push_back(pairs[i].first);
-
-	_mergeInsertDeque(mainChain);
-
-	std::deque<int> result = mainChain;
-	for (size_t i = 0; i < pairs.size(); ++i)
-	{
-		int val = pairs[i].second;
-		std::deque<int>::iterator it = std::lower_bound(result.begin(), result.end(), val);
-		result.insert(it, val);
-	}
-
-	if (straggler != -1)
-	{
-		std::deque<int>::iterator it = std::lower_bound(result.begin(), result.end(), straggler);
-		result.insert(it, straggler);
-	}
-	arr = result;
-}
-	*/
