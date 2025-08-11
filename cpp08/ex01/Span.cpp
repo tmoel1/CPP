@@ -69,3 +69,14 @@ void	Span::addNumber(int value)
 
 	_data.push_back(value);
 }
+
+void	Span::addManyNumbers(std::vector<int>::const_iterator first,
+						std::vector<int>::const_iterator last)
+{
+	unsigned int count = static_cast<unsigned int>(std::distance(first, last));
+
+	if (_data.size() + count > _max)
+		throw std::overflow_error("Exception: container full");
+
+	_data.insert(_data.end(), first, last);
+}

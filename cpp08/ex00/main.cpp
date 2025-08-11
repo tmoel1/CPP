@@ -20,7 +20,7 @@ int main()
 	std::vector<int> v;
 
 	for (int i = 0; i < 10; ++i)
-		v.push_back(i * 2); // 0 2 4 … 18
+		v.push_back(i * 2); // even numbers
 
 	std::cout << "Vector test:" << std::endl;
 
@@ -31,7 +31,7 @@ int main()
 
 	std::list<int> l;
 	
-	for (int i = 1; i <= 5; ++i)
+	for (int i = 0; i < 5; ++i)
 		l.push_back(i); // 1 2 3 4 5
 
 	std::cout << "List test:" << std::endl;

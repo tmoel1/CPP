@@ -16,6 +16,7 @@ void printStack(S& s)
 int main()
 {
 	std::cout << "Subject's Main Test (MutantStack):" << std::endl;
+	try
 	{
 		MutantStack<int> mstack;
 		mstack.push(5);
@@ -32,18 +33,24 @@ int main()
 		MutantStack<int>::iterator ite = mstack.end();
 		
 		++it;
-		--it; // Testing both increment and decrement as required
+		--it;
 		
 		while (it != ite)
 		{
 			std::cout << *it << std::endl;
 			++it;
 		}
-		std::stack<int> s(mstack); // Proves it can be copied to a normal stack
+		std::stack<int> s(mstack);
 	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+	
 	std::cout << std::endl;
 
 	std::cout << "Comparison Test (std::list):" << std::endl;
+	try
 	{
 		std::list<int> mlist;
 		mlist.push_back(5);
@@ -69,9 +76,15 @@ int main()
 		}
 		std::list<int> s(mlist);
 	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
 	std::cout << std::endl;
 
 	std::cout << "Copy and Assignment Test:" << std::endl;
+	try
 	{
 		MutantStack<int> original;
 		original.push(1);
@@ -88,17 +101,25 @@ int main()
 		std::cout << "Copy:     "; printStack(copy);
 		std::cout << "Assigned: "; printStack(assigned);
 	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
 	std::cout << std::endl;
 
-	// --- String Test ---
-	// The helper function is perfect for this simple test
 	std::cout << "String Test:" << std::endl;
+	try
 	{
 		MutantStack<std::string> str_stack;
 		str_stack.push("Hello");
 		str_stack.push("World");
 		str_stack.push("!");
 		printStack(str_stack);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 
 	return 0;

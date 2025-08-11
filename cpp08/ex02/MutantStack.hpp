@@ -5,6 +5,7 @@
 #include <list>
 #include <iostream>
 #include <string>
+#include <exception>
 
 template <typename T>
 class MutantStack : public std::stack<T>
