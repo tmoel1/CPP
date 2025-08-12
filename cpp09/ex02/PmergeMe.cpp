@@ -106,7 +106,8 @@ void PmergeMe::_mergeSortPairsVector(std::vector< std::pair<int, int> >& pairs)
 	if (pairs.size() <= 1)
 		return;
 
-	std::vector< std::pair<int, int> > left, right;
+	std::vector< std::pair<int, int> > left;
+	std::vector< std::pair<int, int> > right;
 	size_t middle = pairs.size() / 2;
 	for (size_t i = 0; i < middle; ++i)
 		left.push_back(pairs[i]);
@@ -117,7 +118,9 @@ void PmergeMe::_mergeSortPairsVector(std::vector< std::pair<int, int> >& pairs)
 	_mergeSortPairsVector(right);
 
 	pairs.clear();
-	size_t l = 0, r = 0;
+
+	size_t l = 0;
+	size_t r = 0;
 	while (l < left.size() && r < right.size())
 	{
 		if (left[l].first < right[r].first)
@@ -173,9 +176,10 @@ void PmergeMe::_fordJohnsonSortVector(std::vector<int>& arr)
 	for (size_t i = 0; i < jacob_indices.size(); ++i)
 	{
 		size_t k = jacob_indices[i];
-		if (k > pendChain.size()) k = pendChain.size();
-		if (k <= 1) continue;
-
+		if (k > pendChain.size())
+			k = pendChain.size();
+		if (k <= 1)
+			continue;
 		int val = pendChain[k - 1];
 		std::vector<int>::iterator insertion_point = std::lower_bound(mainChain.begin(), mainChain.end(), val);
 		mainChain.insert(insertion_point, val);
@@ -197,7 +201,8 @@ void PmergeMe::_mergeSortPairsDeque(std::deque< std::pair<int, int> >& pairs)
 	if (pairs.size() <= 1)
 		return;
 
-	std::deque< std::pair<int, int> > left, right;
+	std::deque< std::pair<int, int> > left;
+	std::deque< std::pair<int, int> > right;
 	size_t middle = pairs.size() / 2;
 	for (size_t i = 0; i < middle; ++i)
 		left.push_back(pairs[i]);
@@ -208,7 +213,9 @@ void PmergeMe::_mergeSortPairsDeque(std::deque< std::pair<int, int> >& pairs)
 	_mergeSortPairsDeque(right);
 
 	pairs.clear();
-	size_t l = 0, r = 0;
+	
+	size_t l = 0;
+	size_t r = 0;
 	while (l < left.size() && r < right.size())
 	{
 		if (left[l].first < right[r].first)

@@ -19,7 +19,7 @@ class PmergeMe
 		PmergeMe(const PmergeMe& other);
 		PmergeMe& operator=(const PmergeMe& rhs);
 		~PmergeMe();
-		// public interface - aptly named or no?
+
 		void runSortComparison(int argc, char **argv);
 
 	private:
