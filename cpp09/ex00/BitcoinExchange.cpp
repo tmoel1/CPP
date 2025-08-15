@@ -28,7 +28,8 @@ void BitcoinExchange::loadDatabase(const std::string& dbPath)
 		throw std::runtime_error("Error: could not open database file.");
 
 	std::string line;
-	std::getline(dbFile, line);
+	if (!std::getline(dbFile, line))
+		throw std::runtime_error("Error: database file is empty.");
 
 	while (std::getline(dbFile, line))
 	{
@@ -104,8 +105,24 @@ bool BitcoinExchange::_isValidDate(const std::string& date)
 	int year = std::atoi(date.substr(0, 4).c_str());
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
+
+	bool validDate = true;
 	
 	if (year < 2009 || month < 1 || month > 12 || day < 1 || day > 31)
+		validDate = false;
+
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		validDate = false;
+
+	bool leapYear = false;
+	
+	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+		leapYear = true;
+
+	if ((month == 2 && leapYear && day > 29) || (month == 2 && !leapYear && day > 28))
+		validDate = false;
+
+	if (!validDate)
 	{
 		std::cout << "Error: bad input => " << date << std::endl;
 		return false;

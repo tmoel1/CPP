@@ -9,8 +9,6 @@
 #include <cstdlib>
 #include <iostream>
 
-// SUPPRIME EXCESS .csv FILES BEFORE PUSHING!!!!!!!
-
 class BitcoinExchange
 {
 	public:

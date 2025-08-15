@@ -1,5 +1,5 @@
-#ifndef RDN_HPP
-#define RDN_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #include <stack>
 #include <list>

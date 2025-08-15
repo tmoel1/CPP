@@ -22,7 +22,7 @@ PmergeMe::~PmergeMe() {}
 
 
 
-// -Main Public Method
+// Main Public Method
 void PmergeMe::runSortComparison(int argc, char **argv)
 {
 	_parseInput(argc, argv);
@@ -32,15 +32,13 @@ void PmergeMe::runSortComparison(int argc, char **argv)
 		std::cout << " " << _vec[i];
 	std::cout << std::endl;
 
-	// -Vector Sorting and Timing
 	clock_t start_vec = clock();
-	_fordJohnsonSortVector(_vec); // Call main algorithm function directly
+	_fordJohnsonSortVector(_vec);
 	clock_t end_vec = clock();
 	double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000.0;
 
-	// -Deque Sorting and Timing
 	clock_t start_deq = clock();
-	_fordJohnsonSortDeque(_deq); // Call main algorithm function directly
+	_fordJohnsonSortDeque(_deq);
 	clock_t end_deq = clock();
 	double time_deq = static_cast<double>(end_deq - start_deq) / CLOCKS_PER_SEC * 1000000.0;
 
@@ -55,7 +53,7 @@ void PmergeMe::runSortComparison(int argc, char **argv)
 			<< " elements with std::deque  : " << time_deq << " us" << std::endl;
 }
 
-// -Helper Methods
+// Helper Methods
 void PmergeMe::_parseInput(int argc, char **argv)
 {
 	for (int i = 1; i < argc; ++i)
@@ -69,8 +67,7 @@ void PmergeMe::_parseInput(int argc, char **argv)
 	}
 }
 
-// -Jacobsthal Sequence Generation
-// This helper function creates the special insertion order for the algorithm.
+// Jacobsthal Sequence Generation
 std::vector<size_t> PmergeMe::_generateJacobsthalIndices(size_t n)
 {
 	std::vector<size_t> jacob;
@@ -100,7 +97,7 @@ std::vector<size_t> PmergeMe::_generateJacobsthalIndices(size_t n)
 
 // -Vector Implementation
 
-// Recursive helper: Sorts pairs using a standard merge sort.
+// Recursive helper
 void PmergeMe::_mergeSortPairsVector(std::vector< std::pair<int, int> >& pairs)
 {
 	if (pairs.size() <= 1)
@@ -134,7 +131,7 @@ void PmergeMe::_mergeSortPairsVector(std::vector< std::pair<int, int> >& pairs)
 		pairs.push_back(right[r++]);
 }
 
-// Main algorithm: Implements the Ford-Johnson sort for a vector.
+// Main algorithm
 void PmergeMe::_fordJohnsonSortVector(std::vector<int>& arr)
 {
 	if (arr.size() <= 1)
@@ -158,7 +155,6 @@ void PmergeMe::_fordJohnsonSortVector(std::vector<int>& arr)
 		pairs.push_back(std::make_pair(a, b));
 	}
 
-	// The recursive part of the algorithm is handled by this helper
 	_mergeSortPairsVector(pairs);
 
 	std::vector<int> mainChain;
@@ -195,7 +191,7 @@ void PmergeMe::_fordJohnsonSortVector(std::vector<int>& arr)
 
 // -Deque Implementation
 
-// Recursive helper: Sorts pairs using a standard merge sort.
+// Recursive helper
 void PmergeMe::_mergeSortPairsDeque(std::deque< std::pair<int, int> >& pairs)
 {
 	if (pairs.size() <= 1)
@@ -229,7 +225,7 @@ void PmergeMe::_mergeSortPairsDeque(std::deque< std::pair<int, int> >& pairs)
 		pairs.push_back(right[r++]);
 }
 
-// Main algorithm: Implements the Ford-Johnson sort for a deque.
+// Main algorithm
 void PmergeMe::_fordJohnsonSortDeque(std::deque<int>& arr)
 {
 	if (arr.size() <= 1)
@@ -252,7 +248,6 @@ void PmergeMe::_fordJohnsonSortDeque(std::deque<int>& arr)
 		pairs.push_back(std::make_pair(a, b));
 	}
 
-	// The recursive part of the algorithm is handled by this helper
 	_mergeSortPairsDeque(pairs);
 
 	std::deque<int> mainChain;
