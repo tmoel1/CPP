@@ -1,6 +1,6 @@
-# CPP - a work-in-progress
+# CPP ++PlusPlus ✚➕
 
-_A leap into the modern (1998) world of object oriented programming_...
+A leap into the modern (1998) world of object oriented programming...
 
 <br>
 
@@ -16,26 +16,30 @@ _The progression through the various modules is laid out below_:
 
 <br>
 
-**Module 00:** C++ syntax, compilation and structuring header/source files
+**Module 00:** C++ basics and specifiv syntax, classes, I/O and build workflow
 
 **Module 01:** Canonical class form – constructors, destructors, copy/move semantics
 
-**Module 02:** Operator overloading and basic stream I/O
+**Module 02:** Ad-hoc polymorphism, operator overloading and basic stream I/O
 
-**Module 03:** Inheritance, polymorphism and abstract base classes
+**Module 03:** Deeper inheritance, derived and abstract base classes, access control
 
-**Module 04:** Exception safety and custom error types
+**Module 04:** Exception safety, custom error types, interfaces
 
-**Module 05:** Function templates and basic generic programming
+**Module 05:** Function templates, throws and catches, exceptions
 
-**Module 06:** Advanced templates (variadic, SFINAE) and constexpr
+**Module 06:** Advanced casting (reinterpretation, type qualifiers, up-and-down casts), heirarchy
 
-**Module 07:** The STL – containers, iterators and algorithms
+**Module 07:** Templated classes, implicit vs explicit instanciation
 
-**Module 08:** Dynamic resource management with smart pointers
+**Module 08:** STL - functors, container types, smart pointers
 
-**Module 09:** Concurrency – threads, mutexes and condition variables
+**Module 09:** Advanced STL, concurrency, container-based algorithms, maps, deques, etc
 
 <br>
 
-### _Check the commit history to see where we're up to so far_!
+While the early projects cover the basics, the complexity ramps up through the series and ultimately culminates in 'mini' projects involving algorithmic map lookups, a stack-based reverse polish notation calculator and a ground-up, full implementation of the little-known "Ford Johnson" merge-sort algorithm: a highly specific, partly recursive algo optimised for minimal comparisons of relative objects before sorting by pre-empting removals and insertions on the pend and main chains with a natively-generated sequence of 'Jacobsthal' numbers, running concurrently across multiple STL containers. Always a fan-favourite at parties...
+<br>
+
+<br>
+_Objective achieved!_ _Feel free to peruse and poke around, feedback always welcome!_
