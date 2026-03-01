@@ -39,7 +39,11 @@ _The progression through the various modules is laid out below_:
 <br>
 
 While the early projects cover the basics, the complexity ramps up through the series and ultimately culminates in 'mini' projects involving algorithmic map lookups, a stack-based reverse polish notation calculator and a ground-up, full implementation of the little-known "Ford Johnson" merge-sort algorithm: a highly specific, partly recursive algo optimised for minimal comparisons of relative objects before sorting by pre-empting removals and insertions on the pend and main chains with a natively-generated sequence of 'Jacobsthal' numbers, running concurrently across multiple STL containers. Always a fan-favourite at parties...
-<br>
 
 <br>
+
+<img src="readme_meme.png" alt="Alt text" width="600">
+
+<br>
+
 _Objective achieved!_ _Feel free to peruse and poke around, feedback always welcome!_
